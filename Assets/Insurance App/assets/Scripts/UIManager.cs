@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     }
 
     public Case activeCase;
+    public ClientInfoPanel clientInfoPanel;
+    public LocationPanel locationPanel;
+    public GameObject borderPanel;
 
     private void Awake()
     {
@@ -30,5 +33,14 @@ public class UIManager : MonoBehaviour
         activeCase = new Case();
         int newCaseID = Random.Range(0, 999);
         activeCase.caseID = newCaseID.ToString();
+
+        clientInfoPanel.gameObject.SetActive(true);
+        borderPanel.SetActive(true);
+    }
+
+    public void NewCaseName(string firstName, string lastName)
+    {
+        activeCase.name = firstName + " " + lastName;
+        locationPanel.gameObject.SetActive(true);
     }
 }
