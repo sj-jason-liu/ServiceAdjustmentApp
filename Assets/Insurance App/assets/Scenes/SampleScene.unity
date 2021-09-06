@@ -1505,8 +1505,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c36b446838474ac0a0a87215277e16d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 1057885820}
+  mapImg: {fileID: 1057885820}
   mapNote: {fileID: 1069066848}
+  apiKey: AIzaSyBQ8qa7SZsqcmOZM41J_YJdvR6KyvxOBVU
+  xCord: 0
+  yCord: 0
+  zoom: 14
+  imgSize: 400
+  url: https://maps.googleapis.com/maps/api/staticmap?
 --- !u!1 &352073060
 GameObject:
   m_ObjectHideFlags: 0
