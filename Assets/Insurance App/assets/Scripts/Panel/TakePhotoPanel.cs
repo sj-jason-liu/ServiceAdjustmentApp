@@ -23,7 +23,8 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
     {
         if(!string.IsNullOrEmpty(photoNote.text))
         {
-            UIManager.Instance.activeCase.photoNote = photoNote.text;
+			UIManager.Instance.activeCase.photoTaken = photo;
+			UIManager.Instance.activeCase.photoNote = photoNote.text;
         }    
     }
 

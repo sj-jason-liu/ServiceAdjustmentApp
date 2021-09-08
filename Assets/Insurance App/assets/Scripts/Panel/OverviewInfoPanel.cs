@@ -1,18 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
-public class OverviewInfoPanel : MonoBehaviour
+public class OverviewInfoPanel : MonoBehaviour, IPanel
 {
-    // Start is called before the first frame update
-    void Start()
+    public Text caseNumText;
+    public Text nameText;
+    public Text dateText;
+    public Text locationNote;
+    public RawImage photoTaken;
+    public Text photoNote;
+
+    public void OnEnable()
     {
-        
+        caseNumText.text = "CASE NUMBER " + UIManager.Instance.activeCase.caseID;
+        nameText.text = "NAME " + UIManager.Instance.activeCase.name;
+        dateText.text = "DATE " + DateTime.Today.ToString();
+        locationNote.text = UIManager.Instance.activeCase.locationNote;
+        photoTaken = UIManager.Instance.activeCase.photoTaken;
+        photoNote.text = UIManager.Instance.activeCase.photoNote;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ProcessInfo()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
