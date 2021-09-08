@@ -8,6 +8,7 @@ public class LocationPanel : MonoBehaviour, IPanel
 {
     public RawImage mapImg;
     public InputField mapNote;
+    public Text caseNumberText;
 
     public string apiKey;
 
@@ -15,6 +16,11 @@ public class LocationPanel : MonoBehaviour, IPanel
     public int zoom;
     public int imgSize;
     public string url = "https://maps.googleapis.com/maps/api/staticmap?";
+
+    public void OnEnable()
+    {
+        caseNumberText.text = "CASE NUMBER " + UIManager.Instance.activeCase.caseID;
+    }
 
     public IEnumerator Start()
     {
@@ -85,6 +91,9 @@ public class LocationPanel : MonoBehaviour, IPanel
 
     public void ProcessInfo()
     {
-        
+        if (!string.IsNullOrEmpty(mapNote.text))
+        {
+            UIManager.Instance.activeCase.locationNote = mapNote.text;
+        }
     }
 }
