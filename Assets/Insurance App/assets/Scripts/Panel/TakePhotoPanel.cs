@@ -8,6 +8,7 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
     public RawImage photo;
     public InputField photoNote;
     public Text caseNumText;
+	public GameObject overviewInfoPanel;
 
     public void OnEnable()
     {
@@ -23,8 +24,10 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
     {
         if(!string.IsNullOrEmpty(photoNote.text))
         {
-			UIManager.Instance.activeCase.photoTaken = photo;
+			//convert it into byte array and store it.
+			UIManager.Instance.activeCase.photoTaken = photo.texture;
 			UIManager.Instance.activeCase.photoNote = photoNote.text;
+			overviewInfoPanel.SetActive(true);
         }    
     }
 

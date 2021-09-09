@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ClientInfoPanel : MonoBehaviour, IPanel
 {
     public Text caseNumberText;
+    public GameObject locationPanel;
     public InputField firstNameInput, lastNameInput;
 
     private void OnEnable()
@@ -19,7 +20,8 @@ public class ClientInfoPanel : MonoBehaviour, IPanel
         string inputLastName = lastNameInput.text;
         if(!string.IsNullOrEmpty(inputFirstName) || !string.IsNullOrEmpty(inputLastName))
         {
-            UIManager.Instance.NewCaseName(inputFirstName, inputLastName);
+            UIManager.Instance.activeCase.name = firstNameInput.text + " " + lastNameInput.text;
+            locationPanel.SetActive(true);
         }
         else
         {

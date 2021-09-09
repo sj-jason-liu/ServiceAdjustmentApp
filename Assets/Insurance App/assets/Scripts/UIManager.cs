@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class UIManager : MonoBehaviour
 {
@@ -38,9 +40,19 @@ public class UIManager : MonoBehaviour
         borderPanel.SetActive(true);
     }
 
-    public void NewCaseName(string firstName, string lastName)
+    public void SubmitButton()
     {
-        activeCase.name = firstName + " " + lastName;
-        locationPanel.gameObject.SetActive(true);
+        Case awsCase = new Case();
+        awsCase.caseID = activeCase.caseID;
+        awsCase.name = activeCase.name;
+        awsCase.date = activeCase.date;
+        awsCase.locationNote = activeCase.locationNote;
+        awsCase.photoTaken = activeCase.photoTaken;
+        awsCase.photoNote = activeCase.photoNote;
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/case#" + awsCase.caseID + ".dat");
+        bf.Serialize(file, awsCase);
+        file.Close();
     }
 }

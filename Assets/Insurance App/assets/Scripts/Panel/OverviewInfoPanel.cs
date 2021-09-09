@@ -16,11 +16,12 @@ public class OverviewInfoPanel : MonoBehaviour, IPanel
     public void OnEnable()
     {
         caseNumText.text = "CASE NUMBER " + UIManager.Instance.activeCase.caseID;
-        nameText.text = "NAME " + UIManager.Instance.activeCase.name;
-        dateText.text = "DATE " + DateTime.Today.ToString();
-        locationNote.text = UIManager.Instance.activeCase.locationNote;
-        photoTaken = UIManager.Instance.activeCase.photoTaken;
-        photoNote.text = UIManager.Instance.activeCase.photoNote;
+        nameText.text = "NAME: " + UIManager.Instance.activeCase.name;
+        dateText.text = "DATE: " + DateTime.Now.ToString();
+        locationNote.text = "LOCATION NOTES: \n" + UIManager.Instance.activeCase.locationNote;
+        //rebuild photo and display
+        photoTaken.texture = UIManager.Instance.activeCase.photoTaken;
+        photoNote.text = "PHOTO NOTES: \n" + UIManager.Instance.activeCase.photoNote;
     }
 
     public void ProcessInfo()

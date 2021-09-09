@@ -16,6 +16,7 @@ public class LocationPanel : MonoBehaviour, IPanel
     public int zoom;
     public int imgSize;
     public string url = "https://maps.googleapis.com/maps/api/staticmap?";
+    public string addressUrl = "https://maps.googleapis.com/maps/api/geocode/json?";
 
     public void OnEnable()
     {
@@ -87,6 +88,22 @@ public class LocationPanel : MonoBehaviour, IPanel
             //make image texture as map texture
             mapImg.texture = DownloadHandlerTexture.GetContent(webRequest);
         }
+    }
+
+    IEnumerator GetLocationAddress()
+    {
+        addressUrl = addressUrl + "latlng=" + xCord + "," + yCord + "&key=" + apiKey;
+        
+        using (UnityWebRequest webLocation = UnityWebRequest.Get(addressUrl))
+        {
+            yield return webLocation.SendWebRequest();
+            if(webLocation.error != null)
+            {
+                Debug.LogError("Getting address error");
+            }
+        }
+
+        //JsonUtility.FromJson(addressUrl);
     }
 
     public void ProcessInfo()
