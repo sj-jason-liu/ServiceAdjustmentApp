@@ -63,7 +63,7 @@ public class LocationPanel : MonoBehaviour, IPanel
         }
         else
         {
-            Debug.LogError("You need to enable location service.");
+            Debug.Log("You need to enable location service.");
         }    
 
 

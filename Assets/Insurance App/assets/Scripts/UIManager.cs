@@ -54,5 +54,8 @@ public class UIManager : MonoBehaviour
         FileStream file = File.Create(Application.persistentDataPath + "/case#" + awsCase.caseID + ".dat");
         bf.Serialize(file, awsCase);
         file.Close();
+
+        Debug.Log("Application persistent data path: " + Application.persistentDataPath);
     }
 }
+ 

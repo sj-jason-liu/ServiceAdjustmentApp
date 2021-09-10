@@ -19,8 +19,14 @@ public class OverviewInfoPanel : MonoBehaviour, IPanel
         nameText.text = "NAME: " + UIManager.Instance.activeCase.name;
         dateText.text = "DATE: " + DateTime.Now.ToString();
         locationNote.text = "LOCATION NOTES: \n" + UIManager.Instance.activeCase.locationNote;
-        //rebuild photo and display
-        photoTaken.texture = UIManager.Instance.activeCase.photoTaken;
+
+        //rebuild photo from byte arrya
+        //rebuild texture from texture2D
+        Texture2D image = new Texture2D(1, 1);
+        image.LoadImage(UIManager.Instance.activeCase.photoTaken);
+        Texture rebuiltImage = image as Texture;
+
+        photoTaken.texture = rebuiltImage;
         photoNote.text = "PHOTO NOTES: \n" + UIManager.Instance.activeCase.photoNote;
     }
 
