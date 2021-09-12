@@ -51,11 +51,15 @@ public class UIManager : MonoBehaviour
         awsCase.photoNote = activeCase.photoNote;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/case#" + awsCase.caseID + ".dat");
+        string filePath = Application.persistentDataPath + "/case#" + awsCase.caseID + ".dat";
+        FileStream file = File.Create(filePath);
         bf.Serialize(file, awsCase);
         file.Close();
 
         Debug.Log("Application persistent data path: " + Application.persistentDataPath);
+
+        //send the path to AWS
+        AWSManager.Instance.UploadToS3(filePath, awsCase.caseID);
     }
 }
  
