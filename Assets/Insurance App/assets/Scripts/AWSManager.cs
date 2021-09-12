@@ -86,16 +86,39 @@ public class AWSManager : MonoBehaviour
             Region = _S3Region
         };
 
-        S3Client.PostObjectAsync(request, (responeObj) =>
+        S3Client.PostObjectAsync(request, (responseObj) =>
         {
-            if (responeObj.Exception == null)
+            if (responseObj.Exception == null)
             {
                 Debug.Log("Successfully posted to bucket.");
                 SceneManager.LoadScene(0);
             }
             else
             {
-                Debug.Log("Exception occured during uploading: " + responeObj.Exception);
+                Debug.Log("Exception occured during uploading: " + responseObj.Exception);
+            }
+        });
+    }
+
+    public void GetList(string caseNumber)
+    {
+        ListObjectsRequest request = new ListObjectsRequest()
+        {
+            BucketName = "service-adjustment-app-jason"
+        };
+
+        S3Client.ListObjectsAsync(request, (requestObj) =>
+        {
+            if (requestObj.Exception == null)
+            {
+                requestObj.Response.S3Objects.ForEach((obj) =>
+                {
+                    Debug.Log(obj.Key);
+                });
+            }
+            else
+            {
+                Debug.Log("Error getting list of items from S3: " + requestObj.Exception);
             }
         });
     }
